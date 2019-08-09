@@ -15,6 +15,25 @@ const FormComp = props => {
   // render() {
   console.log(props.values);
   console.log(props.errors);
+
+  // const [users, setUsers] = useState([]);
+  // console.log(users);
+
+  // useEffect(() => {
+  //   if (props.status) {
+  //     setUsers([...users, props.status]);
+  //   }
+  // }, [props.status, users]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5000/api/restricted/data")
+  //     .then(res => {
+  //       setUsers(res.data);
+  //     })
+  //     .catch(err => console.error(err));
+  // }, []);
+
   return (
     <Form>
       {props.touched.username && props.errors.username && (
@@ -44,12 +63,13 @@ const FormikForm = withFormik({
       .min(6, "Password must be at least 6 characters")
       .required("Password is required.")
   }),
-  handleSubmit: (values, { resetForm }) => {
-    console.log("request");
+  handleSubmit: (values, { resetForm, setStatus }) => {
+    // console.log("request");
     axios
       .post("http://localhost:5000/api/register", values)
       .then(res => {
         console.log(res);
+        setStatus(res);
         resetForm();
       })
       .catch(error => console.error(error));
