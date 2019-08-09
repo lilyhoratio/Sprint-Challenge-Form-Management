@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./UserList.css";
