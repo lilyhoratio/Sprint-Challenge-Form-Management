@@ -5,34 +5,34 @@ import "./UserList.css";
 import axios from "axios";
 
 const UserList = props => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/restricted/data")
-      .then(res => {
-        console.log(res.data);
-        setUsers(res.data);
-      })
-      .catch(err => console.error(err));
-  }, []);
-
+  //   const [users, setUsers] = useState([]);
+  //   useEffect(() => {
+  //     axios
+  //       .get("http://localhost:5000/api/restricted/data")
+  //       .then(res => {
+  //         console.log(res.data);
+  //         setUsers(res.data);
+  //       })
+  //       .catch(err => console.error(err));
+  //   }, []);
   return (
     <div className="user-cards">
-      {users.map(user => {
-        return (
-          <Card>
-            <Card.Content>
-              <Card.Header>{user.name}</Card.Header>
-              <Card.Meta>{user.course || "N/A"}</Card.Meta>
-              <Card.Description>
-                {user.ingredients.map(ingredient => (
-                  <li>{ingredient}</li>
-                ))}
-              </Card.Description>
-            </Card.Content>
-          </Card>
-        );
-      })}
+      {props.users &&
+        props.users.map(user => {
+          return (
+            <Card>
+              <Card.Content>
+                <Card.Header>{user.name}</Card.Header>
+                <Card.Meta>{user.course || "N/A"}</Card.Meta>
+                <Card.Description>
+                  {user.ingredients.map(ingredient => (
+                    <li>{ingredient}</li>
+                  ))}
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          );
+        })}
     </div>
   );
 };

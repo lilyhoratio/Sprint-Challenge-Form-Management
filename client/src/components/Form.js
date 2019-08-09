@@ -16,23 +16,14 @@ const FormComp = props => {
   console.log(props.values);
   console.log(props.errors);
 
-  // const [users, setUsers] = useState([]);
-  // console.log(users);
+  const [users, setUsers] = useState([]);
+  console.log("USERS", users);
 
-  // useEffect(() => {
-  //   if (props.status) {
-  //     setUsers([...users, props.status]);
-  //   }
-  // }, [props.status, users]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5000/api/restricted/data")
-  //     .then(res => {
-  //       setUsers(res.data);
-  //     })
-  //     .catch(err => console.error(err));
-  // }, []);
+  useEffect(() => {
+    if (props.status) {
+      setUsers([...users, props.status]);
+    }
+  }, [props.status, users]);
 
   return (
     <Form>
@@ -68,8 +59,8 @@ const FormikForm = withFormik({
     axios
       .post("http://localhost:5000/api/register", values)
       .then(res => {
-        console.log(res);
-        setStatus(res);
+        console.log("post response", res.data);
+        // setStatus(res.data);
         resetForm();
       })
       .catch(error => console.error(error));
