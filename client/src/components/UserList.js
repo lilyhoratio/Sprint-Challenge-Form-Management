@@ -25,9 +25,8 @@ const UserList = props => {
                 <Card.Header>{user.name}</Card.Header>
                 <Card.Meta>{user.course || "N/A"}</Card.Meta>
                 <Card.Description>
-                  {user.ingredients.map(ingredient => (
-                    <li>{ingredient}</li>
-                  ))}
+                  {user.ingredients &&
+                    user.ingredients.map(ingredient => <li>{ingredient}</li>)}
                 </Card.Description>
               </Card.Content>
             </Card>
